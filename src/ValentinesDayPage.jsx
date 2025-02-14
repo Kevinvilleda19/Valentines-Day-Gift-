@@ -6,7 +6,7 @@ export default function ValentinesDayPage() {
   const [showMessage, setShowMessage] = useState(false);
   const [floatingHearts, setFloatingHearts] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audio] = useState(new Audio("/unthinkable.mp3")); // Audio object
+  const [audio] = useState(new Audio("/unthinkable.mp3"));
 
   useEffect(() => {
     const heartsArray = Array.from({ length: 30 }).map((_, i) => ({
@@ -19,7 +19,6 @@ export default function ValentinesDayPage() {
     setFloatingHearts(heartsArray);
   }, []);
 
-  // Handle music play/pause
   const toggleMusic = () => {
     if (isPlaying) {
       audio.pause();
@@ -30,7 +29,6 @@ export default function ValentinesDayPage() {
     setIsPlaying(!isPlaying);
   };
 
-  // All uploaded images for the photo gallery
   const images = [
     "/IMG_7092.jpeg", "/IMG_7068.jpeg", "/IMG_7100.jpeg", "/IMG_6551.jpeg",
     "/IMG_1403.jpeg", "/IMG_3344.jpeg", "/IMG_4114.jpeg", "/8BD97E6E-7485-434F-8390-4C4CE7C69869.jpeg",
@@ -62,7 +60,7 @@ export default function ValentinesDayPage() {
 
       {/* ❤️ Auto-Scrolling Photo Gallery (Above Love Letter) ❤️ */}
       <div className="bg-pink-50 py-6 w-full flex flex-col items-center overflow-hidden">
-        <h2 className="text-2xl md:text-3xl font-bold text-red-500 mb-4">💖 Our Love Memories 💖</h2>
+        <h2 className="text-xl md:text-3xl font-bold text-red-500 mb-4">💖 Our Love Memories 💖</h2>
 
         <div className="relative w-full max-w-4xl overflow-hidden">
           <motion.div
@@ -71,7 +69,7 @@ export default function ValentinesDayPage() {
             animate={{ x: "-100%" }}
             transition={{
               ease: "linear",
-              duration: 12, // Optimized speed for mobile scrolling
+              duration: 15,
               repeat: Infinity,
             }}
             whileHover={{ animationPlayState: "paused" }}
@@ -81,7 +79,7 @@ export default function ValentinesDayPage() {
                 key={index}
                 src={src}
                 alt={`Memory ${index + 1}`}
-                className="w-40 h-24 md:w-64 md:h-40 object-cover rounded-lg shadow-lg"
+                className="w-32 h-20 md:w-48 md:h-32 object-cover rounded-lg shadow-lg"
               />
             ))}
           </motion.div>
@@ -102,10 +100,10 @@ export default function ValentinesDayPage() {
           </motion.button>
         ) : (
           <motion.div
-            className="relative bg-white shadow-lg rounded-lg p-6 max-w-lg md:max-w-2xl text-gray-800 border-4 border-pink-300"
+            className="relative bg-white shadow-lg rounded-lg p-4 md:p-6 max-w-md md:max-w-2xl text-gray-800 border-4 border-pink-300"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }} // Close animation
+            exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 100 }}
           >
             {/* Close Button */}
@@ -116,23 +114,26 @@ export default function ValentinesDayPage() {
               <X size={20} />
             </button>
 
-            <p className="text-lg md:text-xl leading-relaxed text-center text-red-600">
-              <b>Mi Amor,</b>
-              <br /><br />
-              I can’t believe how lucky I am to have you in my life. Every single day with you is a blessing, and I wouldn’t trade it for anything.
-              <br /><br />
-              **You make my heart race, my soul shine, and my world feel complete.**
-              Just hearing your voice is enough to turn my worst days into the best ones.
-              <br /><br />
-              I love **the way you laugh**, **the way you care for me**, and **the way you always know exactly what to say**.
-              You are my safe place, my happiness, and my heart.
-              <br /><br />
-              **From our late-night talks to our little adventures, every moment with you is something I cherish.**
-              <br /><br />
-              And as SpongeBob would say… **"I'm ready, I'm ready... to love you forever!"** ❤️
-              <br /><br />
-              **Happy Valentine's Day, mi amor.**
-            </p>
+            {/* Scrollable Love Letter */}
+            <div className="max-h-[70vh] overflow-y-auto p-3 md:p-4">
+              <p className="text-base md:text-lg leading-relaxed text-center text-red-600">
+                <b>Mi Amor,</b>
+                <br /><br />
+                I can’t believe how lucky I am to have you in my life. Every single day with you is a blessing, and I wouldn’t trade it for anything.
+                <br /><br />
+                **You make my heart race, my soul shine, and my world feel complete.**
+                Just hearing your voice is enough to turn my worst days into the best ones.
+                <br /><br />
+                I love **the way you laugh**, **the way you care for me**, and **the way you always know exactly what to say**.
+                You are my safe place, my happiness, and my heart.
+                <br /><br />
+                **From our late-night talks to our little adventures, every moment with you is something I cherish.**
+                <br /><br />
+                And as SpongeBob would say… **"I'm ready, I'm ready... to love you forever!"** ❤️
+                <br /><br />
+                **Happy Valentine's Day, mi amor.**
+              </p>
+            </div>
           </motion.div>
         )}
       </motion.div>
